@@ -140,11 +140,23 @@
 </portals>
 <!-- payload -->
 <payloads>
-    <payload name="Payload" id="payload" primary-owner="blue-team" secondary-owner="red-team" starting-location="59.5,22.0,33.5" middle-location="0.0,22.0,0.5" radius="4" height="3" yaw="180.0" secondary-owner-speed="5" primary-owner-speed="5" required="true" secondary-push-nogoal="true">
-        <permanent-checkpoints>
-            <s1/> <!--This is red teams checkpoint-->
-            <p2/> <!--This is blue teams checkpoint-->
-        </permanent-checkpoints>
+    <payload name="Payload" id="payload">
+        <goals>
+            <goal team="blue-team">59.5,22.0,32.5</goal>
+            <goal team="red-team">-58.5,22.0,32.5</goal>
+        </goals>
+        <properties radius="5" height="8"/>
+        <speeds neutral-speed="0.5">
+            <speed team="red-team">1.1</speed>
+            <speed team="blue-team">1.1</speed>
+        </speeds>
+        <starting-location>0.5,22.0,0.5</starting-location>
+        <checkpoints>
+            <checkpoint id="blue-1" permanent="true">28.5,22.00,-13.5</checkpoint>
+            <checkpoint id="blue-2">52.5,22.0,16.5</checkpoint>
+            <checkpoint id="red-1" permanent="true">-27.5,22.00,-13.5</checkpoint>
+            <checkpoint id="red-2">-51.5,22.0,16.5</checkpoint>
+        </checkpoints>
     </payload>
 </payloads>
 <time>12m</time>
