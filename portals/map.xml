@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<map proto="1.4.3">
+<name>Portals</name>
+<version>3.0.3</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="177803b2-797c-4089-aae1-5702ca259e2c"/> <!-- Onsole -->
+</authors>
+<teams>
+    <team color="blue" max="100" id="blue-team">Blue</team>
+    <team color="dark red" max="100" id="red-team">Red</team>
+</teams>
+<rage/>
+<time>8m</time>
+<score>
+    <kills>1</kills>
+    <deaths>-1</deaths>
+</score>
+<kits>
+    <kit id='default-kit'>
+        <item amount='200'>stone</item>
+    </kit>
+</kits>
+<spawns>
+    <spawn yaw="-90" team="blue-team" kit="default-kit">
+        <region>
+            <point>17,15,-65</point>
+        </region>
+    </spawn>
+    <spawn yaw="-90" team="red-team" kit="default-kit">
+        <region>
+            <point>17,15,-65</point>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <point>20,20,-65</point>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <all id="combo-filter">
+        <crouching id="crouching"/>
+        <holding>
+            <item material="diamond"/>
+        </holding>
+        
+    </all>
+</filters>
+<regions>
+    <cuboid id="left-portal" min="32,18,-72" max="31,15,-69"/>
+</regions>
+<respawn delay="30s" />
+<portals>
+    <!-- Left Orange Portal -->
+    <!-- <portal smooth="true" sound="false" z="12" forward="left-portal" filter="combo-filter"/> -->
+
+    <!-- <cuboid id="test" min="32,18,-72" max="31,15,-69"/> -->
+
+     <!-- <portal protect="true" z="12" bidirectional="true" smooth="true">
+        <region><cuboid min="32,18,-72" max="31,15,-69"/></region>
+    </portal> -->
+
+    <!-- <portal protect="true" z="12" bidirectional="true" smooth="true" />  -->
+
+    <!-- <portal transit="crouching" z="10" /> -->
+
+    <!-- transit="crouching" -->
+
+    <!-- <portal bidirectional="true">
+        <region>
+            <cuboid min='20,15,-73' max='15,15,-68'/>
+        </region>
+        <destination>
+            <cuboid min='20,15,-61' max='15,15,-56'/>
+        </destination>
+    </portal> -->
+
+     <portal y="10">
+        <region>
+            <cuboid min='29,15,-67' max='23,18,-62'/>
+        </region>
+    </portal>
+
+</portals>
+</map>
