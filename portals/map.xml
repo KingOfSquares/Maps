@@ -1,24 +1,55 @@
 <?xml version="1.0"?>
 <map proto="1.4.3">
 <name>Portals</name>
-<version>3.0.3</version>
+<version>3.0.37</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
-    <author uuid="177803b2-797c-4089-aae1-5702ca259e2c"/> <!-- Onsole -->
+    <author uuid="177803b2-797c-4089-aae1-5702ca259e2c" /> <!-- Onsole -->
 </authors>
 <teams>
     <team color="blue" max="100" id="blue-team">Blue</team>
     <team color="dark red" max="100" id="red-team">Red</team>
 </teams>
-<rage/>
+<rage />
 <time>8m</time>
 <score>
     <kills>1</kills>
     <deaths>-1</deaths>
 </score>
 <kits>
-    <kit id='default-kit'>
-        <item amount='200'>stone</item>
+    <!-- Kit and Filter References -->
+    <lend kit="jumper-kit" filter="carrying-gold" />
+    <give kit="regen-kit" filter="crouching" />
+    <!-- Inline kit and filters -->
+    <take>
+        <kit>
+            <fly/>
+        </kit>
+        <filter>
+            <flag-carried>flag</flag-carried>
+        </filter>
+    </take>
+    <kit id="jumper-kit">
+        <fly/>
+        <max-health>10</max-health>
+        <effect duration="oo" amplifier="4">speed</effect>
+    </kit>
+    <kit id="regen-kit">
+        <effect duration="4" amplifier="4">regeneration</effect>
+    </kit>
+    <kit id='default-kit' parent="chestplate">
+        <item amount='64'>stone</item>
+        <item material="diamond" />
+        <item material="redstone" />
+        <item material="diamond chestplate" damage="527"/>
+    </kit>
+    <kit id="extra-items">
+        <item material="iron ingot" />
+        <item material="gold ingot" />
+    </kit>
+    <kit id="chestplate">
+        <item material="gold ingot" />
+        <!-- <chestplate material="diamond chestplate" /> -->
     </kit>
 </kits>
 <spawns>
@@ -38,49 +69,141 @@
         </region>
     </default>
 </spawns>
+<flags>
+    <flag id="flag">
+        <post>11.5,15,-52.5</post>
+    </flag>
+</flags>
 <filters>
     <all id="combo-filter">
-        <crouching id="crouching"/>
+        <crouching id="crouching" />
         <holding>
-            <item material="diamond"/>
+            <item material="diamond" />
         </holding>
-        
     </all>
+    <holding id="holding-redstone">
+        <item material="redstone" />
+    </holding>
+    <holding id="holding-iron">
+        <item material="iron ingot" />
+    </holding>
+    <holding id="holding-gold">
+        <item material="gold ingot" />
+    </holding>
+
+    <carrying id="carrying-gold"><item material="gold ingot" /></carrying>
+
+
+    
+    
+    
+    <not id="not-wearing-chestplate"><wearing id="wearing-chestplate"><item material="diamond chestplate"/></wearing></not>
+
+    <flag-carried id="flag-carry">flag</flag-carried>
+
+    <objective id="objective-event">objective</objective>
+
+    <score id="score-range-filter">[2, 6)</score>
+
+    <lives id="lives-filter" min="3" max="5"/>
+
 </filters>
 <regions>
-    <cuboid id="left-portal" min="32,18,-72" max="31,15,-69"/>
+    <cuboid id="left-orange-portal" min="33,19,-73" max="30,15,-68" />
+
+    <cuboid id="left-sponge-portal" min="32,19,-49" max="31,15,-44"/>
+
+
+    <cuboid id="black-zone" min="20,15,-32" max="15,18,-37" />
+    <cuboid id="orange-zone" min="20,15,-44" max="15,18,-49" />
+
+    <cuboid id="blue-zone" min="20,15,-56" max="15,18,-61" />
+    <cuboid id="red-zone" min="20,15,-68" max="15,18,-73" />
+
+    <cuboid id="brown-zone" min="20,15,-80" max="15,18,-85" />
+    <cuboid id="green-zone" min="20,15,-92" max="15,18,-97" />
+
+    <cuboid id="pink-zone" min="23,15,-91" max="28,18,-86" />
+    <cuboid id="yellow-zone" min="23,15,-67" max="28,18,-62" />
+    <cuboid id="lime-zone" min="23,15,-43" max="28,18,-38" />
+
 </regions>
-<respawn delay="30s" />
+    <structures>
+        <structure id="struc" region="left-orange-portal"/>
+        <dynamic id="wow" structure="struc" trigger="holding-redstone" offset="0,10,0" />
+        <dynamic id="wow2" structure="struc" trigger="holding-iron" location="21,30,-82" />
+    </structures>
+<respawn delay="3s" />
+
+<destroyables>
+    <destroyable id="objective" owner="blue-team" name="Sponge Left Portal" materials="sponge" required="false"  region="left-sponge-portal" />
+</destroyables>
+
+<score>
+    <box points="2" region="left-sponge-portal" />
+</score>
+
+
 <portals>
     <!-- Left Orange Portal -->
-    <!-- <portal smooth="true" sound="false" z="12" forward="left-portal" filter="combo-filter"/> -->
+    <portal smooth="true" sound="true" forward="left-orange-portal" destination="left-sponge-portal" />
+    <!-- <portal smooth="true" sound="true" region="left-orange-portal" destination="left-sponge-portal" /> -->
+
+    <!-- filter="combo-filter" /> -->
+    <!-- observers="combo-filter" -->
 
     <!-- <cuboid id="test" min="32,18,-72" max="31,15,-69"/> -->
 
-     <!-- <portal protect="true" z="12" bidirectional="true" smooth="true">
+    <!-- <portal protect="true" z="12" bidirectional="true" smooth="true">
         <region><cuboid min="32,18,-72" max="31,15,-69"/></region>
     </portal> -->
 
     <!-- <portal protect="true" z="12" bidirectional="true" smooth="true" />  -->
 
-    <!-- <portal transit="crouching" z="10" /> -->
 
-    <!-- transit="crouching" -->
-
-    <!-- <portal bidirectional="true">
-        <region>
-            <cuboid min='20,15,-73' max='15,15,-68'/>
-        </region>
-        <destination>
-            <cuboid min='20,15,-61' max='15,15,-56'/>
-        </destination>
+        <!-- holding-gold -->
+            <!-- carrying-gold -->
+ 
+    <!-- <portal z="10">
+        <transit>
+            <filter id="objective-event"/>
+        </transit>
     </portal> -->
 
-     <portal y="10">
+    <portal z="10">
+        <transit>
+            <filter id="wearing-chestplate"/>
+        </transit>
+    </portal> 
+
+    <!-- <portal y="5">
+        <transit>
+            <filter id="flag-carry"/>
+        </transit>
+    </portal> -->
+
+    <!-- <portal y="10">
+        <transit>
+            <filter id="objective-event"/>
+        </transit>
+    </portal>     -->
+
+    <!-- transit="crouching" -->
+<!-- 
+    <portal bidirectional="true">
         <region>
-            <cuboid min='29,15,-67' max='23,18,-62'/>
+            <cuboid min='20,15,-73' max='15,15,-68' />
         </region>
+        <destination>
+            <cuboid min='20,15,-61' max='15,15,-56' />
+        </destination>
     </portal>
+
+    <portal y="10" region="yellow-zone" />
+
+     -->
+
+    <!-- <portal filter="holding-iron" region="pink-zone" destination="lime-zone" bidirectional="true" /> -->
 
 </portals>
 </map>
