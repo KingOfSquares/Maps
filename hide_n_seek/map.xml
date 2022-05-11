@@ -31,7 +31,6 @@
         <leggings locked="true" unbreakable="true" material="diamond leggings"/>
         <boots locked="true" unbreakable="true" material="diamond boots"/>
         <effect duration="1s">blindness</effect>
-        <effect duration="oo">glowing</effect>
         <effect duration="oo" amplifier="1">speed</effect>
     </kit>
     <!-- Gives a unique kit to a specific slot -->
