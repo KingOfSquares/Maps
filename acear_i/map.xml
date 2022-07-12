@@ -51,7 +51,18 @@
 <filters>
     <team id="red-only">red</team>
     <team id="blue-only">blue</team>
+    <time id="A">10s</time>
+    <time id="B">15s</time>
+    <time id="CD">20s</time>
+    <all id="nested">
+        <filter id="A"/>
+    </all>
 </filters>
+    <portals>
+        <portal forward="A" y="10"/>
+        <portal forward="B" z="10"/>
+        <portal forward="CD" y="10"/>
+    </portals>
 <regions>
     <above y="5" id="above-5"/>
     <rectangle id="red-flag-protection" min="35,3" max="40,-2"/>
@@ -96,7 +107,7 @@
     </complement>
     <cuboid id="spawn-protection-1" min="6,20,7" max="-6,27,-7"/>
 <!-- Applied -->
-    <apply enter="red-only" region="red-spawn" message="Only Red Team may enter this spawn!"/>
+    <apply enter="A" region="red-spawn" message="penis!"/>
     <apply enter="blue-only" region="blue-spawn" message="Only Blue Team may enter this spawn!"/>
     <apply block="never" message="You may not edit the spawn area" region="spawn-protection-1"/>
     <apply block="never" message="You may not edit blocks above the flag platform.">
